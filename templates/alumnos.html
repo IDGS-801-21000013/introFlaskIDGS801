@@ -1,12 +1,12 @@
-{% extends "layout.html" %}
+{% extends "layout2.html" %}
 {% block content %}
-            <div class="w-1/2">
+            <div class="">
                 <h1 >Alumnos</h2>
                 <h2>Escuela: {{escuela}}</h2>
             </div>
 
             {% for nombres in nombres %}
-            <div class="w-1/2">
+            <div class="">
                 <h2>Nombre: {{nombres}}</h2>
             </div>
             {% endfor %}
