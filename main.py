@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from forms import UserForm
 
 app = Flask(__name__)
 
@@ -6,11 +7,16 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/alumnos")
+@app.route("/alumnos",methods=["GET","POST"])
 def alumnos():
-    escuela="UTL!!!"
-    nombres=["Dario","Luis","Juan","Pedro"]
-    return render_template("alumnos.html",escuela=escuela,nombres=nombres)
+    # escuela="UTL!!!"
+    # nombres=["Dario","Luis","Juan","Pedro"]
+    # return render_template("alumnos.html",escuela=escuela,nombres=nombres)
+    alumno_clase = UserForm(request.form)
+    if request.method == "POST":
+        pass
+
+    return render_template("alumnos.html",form=alumno_clase)
 
 @app.route("/maestros")
 def maestros():
@@ -72,6 +78,10 @@ def suma(n1,n2):
 @app.route("/default/<string:d>")
 def default(d="Dario"):
     return "El nombre de usuario es: "+d
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True) 

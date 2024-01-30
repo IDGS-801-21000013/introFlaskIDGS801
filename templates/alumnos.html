@@ -1,13 +1,48 @@
 {% extends "layout2.html" %}
 {% block content %}
-            <div class="">
+            <!-- <div class="">
                 <h1 >Alumnos</h2>
                 <h2>Escuela: {{escuela}}</h2>
-            </div>
+            </div> -->
 
-            {% for nombres in nombres %}
+            <!-- {% for nombres in nombres %}
             <div class="">
                 <h2>Nombre: {{nombres}}</h2>
             </div>
-            {% endfor %}
+            {% endfor %} -->
+{% import '_macros.html' as macros %}
+            <h1>Hola desde alumnos</h1>
+
+            <form action="" method="POST" novalidate>
+                <div class="row control-row">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        {{macros.camposNuevos(form.nombre, class="form-control")}}        
+                    </div>
+                </div>
+                <div class="row control-row">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        {{macros.camposNuevos(form.a_paterno, class="form-control")}}        
+                    </div>
+                </div>
+                <div class="row control-row">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        {{macros.camposNuevos(form.a_materno, class="form-control")}}        
+                    </div>
+                </div>
+                <div class="row control-row">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        {{macros.camposNuevos(form.email, class="form-control")}}        
+                    </div>
+                </div>
+                <div class="row control-row">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        {{macros.camposNuevos(form.edad, class="form-control")}}        
+                    </div>
+                </div>
+                <!-- {{macros.datos('Nombre','NOMBRE', class="form-group") }}
+                {{macros.datos('Sueldo', '0.0', 'number', class="form-group") }} -->
+
+                <input type="submit" id="btn1" name="btn1" value="Registrar">
+            </form>
+
 {% endblock %}
