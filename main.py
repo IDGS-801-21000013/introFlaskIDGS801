@@ -12,11 +12,24 @@ def alumnos():
     # escuela="UTL!!!"
     # nombres=["Dario","Luis","Juan","Pedro"]
     # return render_template("alumnos.html",escuela=escuela,nombres=nombres)
+    
     alumno_clase = UserForm(request.form)
-    if request.method == "POST":
-        pass
+    nombre = None
+    a_paterno = None
+    a_materno = None
+    email = None
+    edad = None
+    
+    if request.method == "POST" and alumno_clase.validate():
+        nombre = alumno_clase.nombre.data
+        a_paterno = alumno_clase.a_paterno.data
+        a_materno = alumno_clase.a_materno.data
+        email = alumno_clase.email.data
+        edad = alumno_clase.edad.data
+        
+        print(f"Nombre: {nombre} {a_paterno} {a_materno} Email: {email} Edad: {edad}")
 
-    return render_template("alumnos.html",form=alumno_clase)
+    return render_template("alumnos.html",form=alumno_clase,nombre=nombre,a_paterno=a_paterno,a_materno=a_materno,email=email,edad=edad)
 
 @app.route("/maestros")
 def maestros():
