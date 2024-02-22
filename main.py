@@ -1,7 +1,26 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, g
 from forms import UserForm
+from flask_wtf.csrf import CSRFProtect
+
 
 app = Flask(__name__)
+app.secret_key="Christoper Carlos Ivan Ramirez Sanchez"
+
+
+@app.before_request
+def before_request():
+    g.nombre="Cave"
+    print("before 1")
+
+@app.after_request
+def after_request(response):
+    print("after 3")
+    return response
+        
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"),404
 
 @app.route("/")
 def index():
@@ -12,7 +31,8 @@ def alumnos():
     # escuela="UTL!!!"
     # nombres=["Dario","Luis","Juan","Pedro"]
     # return render_template("alumnos.html",escuela=escuela,nombres=nombres)
-    
+    # print("before 2")
+    print(f"Bienvenido {g.nombre}")
     alumno_clase = UserForm(request.form)
     nombre = None
     a_paterno = None
@@ -28,6 +48,9 @@ def alumnos():
         edad = alumno_clase.edad.data
         
         print(f"Nombre: {nombre} {a_paterno} {a_materno} Email: {email} Edad: {edad}")
+
+        mensaje=f"Bienvenido {g.nombre}"
+        flash(mensaje)
 
     return render_template("alumnos.html",form=alumno_clase,nombre=nombre,a_paterno=a_paterno,a_materno=a_materno,email=email,edad=edad)
 

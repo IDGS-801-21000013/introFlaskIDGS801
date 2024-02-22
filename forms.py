@@ -1,9 +1,9 @@
 from wtforms import Form
 from wtforms import validators
 from flask_wtf import FlaskForm
-from wtforms import StringField, TelField, EmailField, IntegerField
+from wtforms import StringField, EmailField, IntegerField
 from wtforms import EmailField
-# Aqui agregegaremos los campos que sean obligatorios y el email
+# Aqui agregaremos los campos que sean obligatorios y el email
 from wtforms.validators import DataRequired, Email, Length
 
 class UserForm(Form):
